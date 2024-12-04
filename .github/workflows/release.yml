@@ -33,4 +33,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ github.ref_name }}
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/nginx-clone:${{ github.ref_name }}
