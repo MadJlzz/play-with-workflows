@@ -1,0 +1,19 @@
+name: "Push Docker image"
+
+on:
+  release: 
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Git repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/nginx-clone:${{ github.ref_name }}
